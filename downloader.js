@@ -19,7 +19,7 @@ async function questions(){
 			choices: [
 				{ title: "First time install", value: "firsttime" },
 				{ title: "osu-tools update", value: "update" },
-				{ title: "Get stuff", value: "getstuff" }
+				{ title: "cancel", value: "cancel" }
 			],
 		}
 	] );
