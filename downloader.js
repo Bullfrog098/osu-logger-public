@@ -3,12 +3,12 @@ var Git = require( "nodegit" );
 const https = require( "https" );
 const open = require( "open" );
 const prompts = require( "prompts" );
-const readline = require( "readline" )
+const readline = require( "readline" );
 var path = "./dotnet-sdk-3.1.407-win-x64.exe";
 var url = "https://download.visualstudio.microsoft.com/download/pr/a45c8c1c-6466-4afc-a266-bd540069a4a6/97293f1080615bba5572ad1ef3be254c/dotnet-sdk-3.1.407-win-x64.exe";
 if ( fs.existsSync( "./tmp" ) ) fs.emptyDirSync( "./tmp" );
-questions();
 
+questions();
 
 async function questions(){
 	const response = await prompts( [
@@ -46,7 +46,7 @@ function start( first ){
 async function ppmaker( first ){
 	if ( first === true ) await open( path, { wait: true } );
 	var e = await downloadosutools();
-	if (e === false){ 
+	if ( e === false ){ 
 		return readline.createInterface( process.stdin, process.stdout ).question( "Already up to date! Press [enter] to exit", function(){
 			if ( fs.existsSync( path ) ) fs.unlinkSync( path );
 			process.exit();
@@ -72,7 +72,7 @@ function downloadosutools(){
 			var c = await Git.Repository.open( "osu-tools" );
 			var d = await c.getHeadCommit();
 			var localhash = await d.sha();
-			if ( localhash === onlinehash ) return resolve(false);
+			if ( localhash === onlinehash ) return resolve( false );
 		}
 		await fs.rmdirSync( "./osu-tools", { recursive: true } );
 		await fs.copySync( "./tmp/osu-tools", "./osu-tools" );
